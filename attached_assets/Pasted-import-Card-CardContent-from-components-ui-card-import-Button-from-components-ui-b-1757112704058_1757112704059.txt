@@ -1,0 +1,91 @@
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Film, Music, Book, GraduationCap } from "lucide-react";
+import { motion } from "framer-motion";
+
+export default function MediaPortal() {
+  const sections = [
+    {
+      title: "Обучение",
+      icon: <GraduationCap className="w-12 h-12 text-indigo-500" />,
+      description: "Курсы, лекции и статьи для саморазвития",
+      color: "from-indigo-500 to-purple-500",
+    },
+    {
+      title: "Фильмы",
+      icon: <Film className="w-12 h-12 text-pink-500" />,
+      description: "Смотрите последние фильмы и сериалы",
+      color: "from-pink-500 to-red-500",
+    },
+    {
+      title: "Музыка",
+      icon: <Music className="w-12 h-12 text-green-500" />,
+      description: "Слушайте любимые треки и альбомы",
+      color: "from-green-500 to-teal-500",
+    },
+    {
+      title: "Книги",
+      icon: <Book className="w-12 h-12 text-yellow-500" />,
+      description: "Читайте книги и новинки литературы",
+      color: "from-yellow-500 to-orange-500",
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-100 text-gray-800">
+      {/* Header */}
+      <header className="bg-white shadow-md sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-indigo-600">MediaPortal</h1>
+          <nav className="space-x-6">
+            <a href="#" className="hover:text-indigo-600">Обучение</a>
+            <a href="#" className="hover:text-indigo-600">Фильмы</a>
+            <a href="#" className="hover:text-indigo-600">Музыка</a>
+            <a href="#" className="hover:text-indigo-600">Книги</a>
+          </nav>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-20">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-extrabold mb-4">Добро пожаловать в MediaPortal</h2>
+          <p className="text-lg opacity-90 mb-6">
+            Ваш центр для фильмов, музыки, книг и обучения
+          </p>
+          <Button className="bg-white text-indigo-600 font-semibold px-6 py-3 rounded-xl shadow-lg hover:bg-gray-200">
+            Начать исследовать
+          </Button>
+        </div>
+      </section>
+
+      {/* Sections */}
+      <main className="max-w-7xl mx-auto px-6 py-16 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        {sections.map((section, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.2 }}
+          >
+            <Card className="rounded-2xl shadow-lg overflow-hidden bg-white hover:shadow-2xl transition">
+              <CardContent className="p-6 text-center">
+                <div className={`mx-auto mb-4 p-4 rounded-full bg-gradient-to-r ${section.color} w-20 h-20 flex items-center justify-center`}>
+                  {section.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-2">{section.title}</h3>
+                <p className="text-gray-600 text-sm mb-4">{section.description}</p>
+                <Button className="w-full bg-indigo-500 hover:bg-indigo-600">Перейти</Button>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-white border-t py-6 mt-12 text-center text-gray-600">
+        <p>© 2025 MediaPortal. Все права защищены.</p>
+      </footer>
+    </div>
+  );
+}
